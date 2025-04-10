@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+    <meta charset="UTF-8">
+    <title>Pridėti knygą</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
+</head>
+<body>
+<div class="container py-5">
+    <h2 class="text-success mb-4">➕ Nauja knyga</h2>
+    <form method="post">
+        <div class="mb-3">
+            <label class="form-label">Pavadinimas</label>
+            <input type="text" name="title" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Kategorija</label>
+            <select name="category_id" class="form-select" required>
+                {% for cat in categories %}
+                    <option value="{{ cat.id }}">{{ cat.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Kaina (€)</label>
+            <input type="number" step="0.01" name="price" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Išleidimo data</label>
+            <input type="text" name="release_date" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Autorius</label>
+            <input type="text" name="author" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-success">💾 Išsaugoti</button>
+        <a href="{{ url_for('index') }}" class="btn btn-secondary ms-2">🔙 Atgal</a>
+    </form>
+</div>
+</body>
+</html>
